@@ -11,6 +11,8 @@ const PHONE = (process.env.MOLE_PHONE_NUMBER || "")
 let reconnecting = false;
 
 async function startMOLE() {
+  console.log("[MOLE] Memulai koneksi...");
+  console.log("[MOLE] Nomor tersedia:", PHONE.length > 0);
   const { state, saveCreds } =
     await useMultiFileAuthState("auth_info");
 
@@ -24,6 +26,7 @@ async function startMOLE() {
 
   sock.ev.on("connection.update", async (update) => {
     const { connection, lastDisconnect } = update;
+    console.log("[MOLE] Status koneksi:", connection);
 
     if (
       connection === "connecting" &&
