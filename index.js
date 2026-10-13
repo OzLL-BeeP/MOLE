@@ -60,7 +60,7 @@ async function startMOLE() {
 
     if (connection === "close" && !reconnecting) {
       const status = lastDisconnect?.error?.output?.statusCode;
-      console.log("Koneksi ditutup. Status:", status);
+      console.error("[MOLE] Koneksi ditutup:", { status, message: lastDisconnect?.error?.message, data: lastDisconnect?.error?.data });
 
       if (status !== DisconnectReason.loggedOut) {
         reconnecting = true;
